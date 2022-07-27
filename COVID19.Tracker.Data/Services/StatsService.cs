@@ -18,7 +18,7 @@ namespace COVID19.Tracker.Data.Services
             var API_URL = Data.Constants.API.BaseURL;
             using (var client = new HttpClient())
             {
-                string url = $"{API_URL}data.min.json";
+                string url = $"{API_URL}";
                 var response = client.GetAsync(url).Result;
                 string responseAsString = await response.Content.ReadAsStringAsync();
                 apiResult = JsonConvert.DeserializeObject<Dictionary<string, Stats>>(responseAsString);
@@ -33,7 +33,8 @@ namespace COVID19.Tracker.Data.Services
             using (var client = new HttpClient())
             {
                 var dateTimeString = dateTime.ToString("yyyy-MM-dd");
-                string url = $"{API_URL}data-{dateTimeString}.min.json";
+                string url = $"{API_URL}?date={dateTimeString}";
+
                 var response = client.GetAsync(url).Result;
                 string responseAsString = await response.Content.ReadAsStringAsync();
                 apiResult = JsonConvert.DeserializeObject<Dictionary<string, Stats>>(responseAsString);

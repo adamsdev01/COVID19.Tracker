@@ -18,12 +18,14 @@ namespace COVID19.Tracker.Controllers
         {
             this.stateService = stateService;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var states = stateService.GetAllStates();
             return Ok(states);
         }
+
         [HttpGet]
         [Route("search")]
         public async Task<IActionResult> Search(string term)
